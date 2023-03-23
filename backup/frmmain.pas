@@ -12,16 +12,18 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
-  DBCtrls, ExtCtrls, ComCtrls, ComObj, SQLite3Conn, SQLDB, DB, variants,
-  mailmerge;
+  DBCtrls, ExtCtrls, ComCtrls, PopupNotifier, Buttons, CheckBoxThemed, ComObj,
+  SQLite3Conn, SQLDB, DB, variants, mailmerge;
 
 type
 
   { TmainForm }
 
   TmainForm = class(TForm)
+    BitBtn1: TBitBtn;
     btnGenerateDocument: TButton;
     Button1: TButton;
+    cbSocialSecurityInclude: TCheckBox;
     cmbSenders: TComboBox;
     DS_Senders: TDataSource;
     editSubject: TEdit;
@@ -39,15 +41,14 @@ type
     SQLSenders: TSQLQuery;
     SQLGeneralPurpose: TSQLQuery;
     SQLTransaction: TSQLTransaction;
-    StatusBar1: TStatusBar;
+    StatusBar: TStatusBar;
     procedure btnGenerateDocumentClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure cbSocialSecurityIncludeChange(Sender: TObject);
     procedure cmbSendersChange(Sender: TObject);
     procedure cmbSendersSelect(Sender: TObject);
-    procedure DS_SendersDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure SQLConnectionAfterConnect(Sender: TObject);
   private
     Reporter: TMailMerge;
   public
@@ -65,6 +66,33 @@ uses
 {$R *.lfm}
 
 { TmainForm }
+procedure TmainForm.FormCreate(Sender: TObject);
+{ Initial settings }
+var
+  dbPath: string;
+begin
+  dbPath := 'C:\Development\Lazarus\LetterWizard\Twister.db';
+  StatusBar.Panels[0].Text := 'Opening database';
+  SQLConnection.DatabaseName := dbPath;
+  SQLConnection.Connected := True;
+  SQLSenders.Active := True;
+  Reporter := TMailMerge.Create;
+  with SQLSenders do
+  begin
+    Close;
+    Open;
+  end;
+  // Fill The ComboBox
+  while not SQLSenders.EOF do
+  begin
+    cmbSenders.items.AddObject(SqlSenders.FieldByName('Name').AsString +
+      ' ' + SqlSenders.FieldByName('firstname').AsString,
+      TCustomComboBoxItem.Create(SQLSenders.FieldByName('id').AsInteger,
+      SQLSenders.FieldByName('Name').AsString));
+    SQLSenders.Next;
+  end;
+  StatusBar.Panels[0].Text := 'Ready...';
+end;
 
 procedure TmainForm.btnGenerateDocumentClick(Sender: TObject);
 {
@@ -79,7 +107,6 @@ begin
   // First Fill the remaining data of the Reporter object
   Reporter.Subject := editSubject.Text;
   Reporter.Destination := MemoTo.Text;
-  ShowMessage(Reporter.Destination);
 
   // The Greeting
   if groupSalutation.ItemIndex <> -1 then
@@ -101,12 +128,19 @@ begin
   TextBody := LOComponent.loadComponentFromURL(templateFileName,
     '_blank', 0, LoadParams);
 
-
-  // Get the body of the document
+  // Replace the {SENDER} tag
   Text_ := TextBody.createReplaceDescriptor;
-  Text_.setSearchString('{NAME}');
-  Text_.setReplaceString('Danny Van Geyte');
+  Text_.setSearchString('{SENDER}');
+  Text_.setReplaceString(MEMOFrom.Text);
   TextBody.ReplaceAll(Text_);
+  Text_ := nil;
+
+  // Replace the {SENDDATE} tag
+  Text_ := TextBody.createReplaceDescriptor;
+  Text_.setSearchString('{SENDDATE}');
+  Text_.setReplaceString('DAADa');
+  TextBody.ReplaceAll(Text_);
+
 
   // Save the new file
   TextBody.storeToURL(newFileName, VarArrayCreate([0, 0], varVariant));
@@ -121,12 +155,15 @@ begin
   oVC.JumpToStartOfPage;
   oVC.goDown(8, False);
 
-  Text_.insertString(oVC.getStart(), 'JWAAAAJ', False);
 end;
 
 procedure TmainForm.Button1Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TmainForm.cbSocialSecurityIncludeChange(Sender: TObject);
+begin
 end;
 
 procedure TmainForm.cmbSendersChange(Sender: TObject);
@@ -166,8 +203,6 @@ begin
       Reporter.SocialSecurity :=
         SQLGeneralPurpose.FieldByName('socialsecurity').AsString;
 
-
-
       MEMOFrom.Lines.Add(Reporter.FullName);
       MemoFrom.Lines.Add(Reporter.Address);
       MemoFrom.Lines.Add(Reporter.ZipCode + '  ' + Reporter.City);
@@ -180,48 +215,10 @@ begin
 
 end;
 
-procedure TmainForm.DS_SendersDataChange(Sender: TObject; Field: TField);
-begin
-
-end;
-
-procedure TmainForm.FormCreate(Sender: TObject);
-{ Initial settings }
-var
-  dbPath: string;
-begin
-  dbPath := 'C:\Development\Lazarus\LetterWizard\Twister.db';
-  SQLConnection.DatabaseName := dbPath;
-  SQLConnection.Connected := True;
-  SQLSenders.Active := True;
-
-  Reporter := TMailMerge.Create;
-  with SQLSenders do
-  begin
-    Close;
-    Open;
-  end;
-  // Fill The ComboBox
-  while not SQLSenders.EOF do
-  begin
-
-    cmbSenders.items.AddObject(SqlSenders.FieldByName('Name').AsString +
-      ' ' + SqlSenders.FieldByName('firstname').AsString,
-      TCustomComboBoxItem.Create(SQLSenders.FieldByName('id').AsInteger,
-      SQLSenders.FieldByName('Name').AsString));
-    SQLSenders.Next;
-  end;
-end;
-
 procedure TmainForm.FormDestroy(Sender: TObject);
 begin
   Reporter.FreeInstance;
 end;
 
-
-procedure TmainForm.SQLConnectionAfterConnect(Sender: TObject);
-begin
-
-end;
 
 end.
