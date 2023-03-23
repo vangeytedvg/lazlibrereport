@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
-  DBCtrls, ExtCtrls, ComObj, SQLite3Conn, SQLDB, DB, variants;
+  DBCtrls, ExtCtrls, ComObj, SQLite3Conn, SQLDB, DB, variants, mailmerge;
 
 type
 
@@ -39,14 +39,13 @@ type
     procedure btnGenerateDocumentClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure cmbSendersChange(Sender: TObject);
-
     procedure cmbSendersSelect(Sender: TObject);
     procedure DS_SendersDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
-    procedure groupSalutationClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
     procedure SQLConnectionAfterConnect(Sender: TObject);
   private
-
+    Reporter: TMailMerge;
   public
 
   end;
@@ -55,8 +54,9 @@ var
   mainForm: TmainForm;
 
 implementation
+
 uses
-    CustomComboItem, mailmerge;
+  CustomComboItem;
 
 {$R *.lfm}
 
@@ -122,10 +122,8 @@ var
   myItem: TCustomComboBoxItem;
   qryString: string;
   SenderFullName: string;
-  Reporter : TMailMerge;
 begin
-  myItem := TCustomComboBoxItem(cmbSenders.items.Objects
-    [cmbSenders.ItemIndex]);
+  myItem := TCustomComboBoxItem(cmbSenders.items.Objects[cmbSenders.ItemIndex]);
   qryString := 'SELECT * FROM senders WHERE id=' + myItem.Value.ToString;
 
   // Execute the sql statement and store the details of the sender.
@@ -133,34 +131,34 @@ begin
   begin
     Close;
     SQL.Text := qryString;
-    Open
+    Open;
   end;
-  if Not(SQLGeneralPurpose.Eof) then
+  if not (SQLGeneralPurpose.EOF) then
   begin
     // Add the address to the FROM box
-    Reporter := TMailMerge.Create;
     try
-       Reporter.Name:=SQLGeneralPurpose.FieldByName('name').AsString;
-       Reporter.FirstName:=SQLGeneralPurpose.FieldByName('FirstName').AsString;
-       Reporter.Address:=SQLGeneralPurpose.FieldByName('Address').AsString;
-       Reporter.ZipCode:=SQLGeneralPurpose.FieldByName('ZipCode').AsString;
-       Reporter.Phone:=SQLGeneralPurpose.FieldByName('Phone').AsString;
-       Reporter.EMail:=SQLGeneralPurpose.FieldByName('Email').AsString;
-       Reporter.SocialSecurity:=SQLGeneralPurpose.FieldByName('socialsecurity').AsString;
-       MEMOFrom.Lines.Add(Reporter.Name);
-    finally
-      Reporter.FreeInstance;
-    end;
+      Reporter.Name := SQLGeneralPurpose.FieldByName('name').AsString;
+      Reporter.FirstName := SQLGeneralPurpose.FieldByName('FirstName').AsString;
+      Reporter.Address := SQLGeneralPurpose.FieldByName('Address').AsString;
+      Reporter.ZipCode := SQLGeneralPurpose.FieldByName('ZipCode').AsString;
+      Reporter.Phone := SQLGeneralPurpose.FieldByName('Phone').AsString;
+      Reporter.EMail := SQLGeneralPurpose.FieldByName('Email').AsString;
+      Reporter.SocialSecurity :=
+        SQLGeneralPurpose.FieldByName('socialsecurity').AsString;
 
-    //MemoFROM.Lines.Add(FDQryListOfSenders.FieldByName('address').AsString);
-    //MemoFROM.Lines.Add(FDQryListOfSenders.FieldByName('zipcode').AsString + ' '
-    //  + FDQryListOfSenders.FieldByName('city').AsString);
-    //MemoFROM.Lines.Add('GSM: ' + FDQryListOfSenders.FieldByName('phone')
-    //  .AsString);
-    //MemoFROM.Lines.Add('email: ' + FDQryListOfSenders.FieldByName('email')
-    //  .AsString);
-    //CheckBox_SocialSecurityNr.Caption := FDQryListOfSenders.FieldByName
-    //  ('socialsecurity').AsString;
+      // The Greeting
+      if groupSalutation.ItemIndex <> -1 then
+        Reporter.Subject := groupSalutation.Items[groupSalutation.ItemIndex];
+
+      // The signature
+      if groupSignature.ItemIndex <> -1 then;
+      Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
+
+      MEMOFrom.Lines.Add(Reporter.Name);
+    except
+      ShowMessage('Error occured');
+
+    end;
   end;
 end;
 
@@ -175,8 +173,9 @@ var
   dbPath: string;
 begin
   dbPath := 'C:\Development\Lazarus\LetterWizard\Twister.db';
-  SQLConnection.DatabaseName:=dbPath;
-  SQLConnection.Connected:= true;
+  SQLConnection.DatabaseName := dbPath;
+  SQLConnection.Connected := True;
+  Reporter := TMailMerge.Create;
   with SQLSenders do
   begin
     Close;
@@ -194,10 +193,11 @@ begin
   end;
 end;
 
-procedure TmainForm.groupSalutationClick(Sender: TObject);
+procedure TmainForm.FormDestroy(Sender: TObject);
 begin
-
+  Reporter.FreeInstance;
 end;
+
 
 procedure TmainForm.SQLConnectionAfterConnect(Sender: TObject);
 begin

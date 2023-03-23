@@ -26,6 +26,7 @@ type
     FSocialSecurity: string;
     FSubject: string;
     FSalutation: string;
+    FSignature: string;
   public
     property Name: string read FName write FName;
     property FirstName: string read FFirstName write FFirstName;
@@ -35,9 +36,12 @@ type
     property Phone: string read FPhone write FPhone;
     property EMail: string read FEmail write FEmail;
     property SocialSecurity: string read FSocialSecurity write FSocialSecurity;
-        constructor Create(); overload;
+    property Subject: string read FSubject write FSubject;
+    property Salutation: string read FSalutation write FSalutation;
+    property Signature: string read FSignature write FSignature;
+    constructor Create(); overload;
     constructor Create(const AName, AFirstName, AAddress, ACity,
-      AZipCode, APhone, AEmail, ASocialSecurity: string); overload;
+      AZipCode, APhone, AEmail, ASocialSecurity, ASubject, ASalutation, ASignature: string); overload;
 
   end;
 
@@ -51,17 +55,17 @@ begin
 end;
 
 { Class constructor }
-constructor TMailMerge.Create(const AName, AFirstName, AAddress, ACity, AZipCode, APhone, AEmail,
-  ASocialSecurity: string);
+constructor TMailMerge. Create(const AName, AFirstName, AAddress, ACity,
+      AZipCode, APhone, AEmail, ASocialSecurity, ASubject, ASalutation, ASignature: string);
 begin
   FName := AName;
   FFirstName := AFirstName;
-  FAddress:=AAddress;
-  FCity:=ACity;
-  FZipCode:=AZipCode;
-  FPhone:=APhone;
-  FEmail:=AEmail;
-  FSocialSecurity:=ASocialSecurity;
+  FAddress := AAddress;
+  FCity := ACity;
+  FZipCode := AZipCode;
+  FPhone := APhone;
+  FEmail := AEmail;
+  FSocialSecurity := ASocialSecurity;
 end;
 
 end.
