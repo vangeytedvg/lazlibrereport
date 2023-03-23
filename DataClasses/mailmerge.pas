@@ -18,6 +18,7 @@ type
   private
     FName: string;
     FFirstName: string;
+    FFullName: string;
     FAddress: string;
     FCity: string;
     FZipCode: string;
@@ -27,9 +28,11 @@ type
     FSubject: string;
     FSalutation: string;
     FSignature: string;
+    function GetFullName:string;
   public
     property Name: string read FName write FName;
     property FirstName: string read FFirstName write FFirstName;
+    property FullName: string read GetFullName;
     property Address: string read FAddress write FAddress;
     property City: string read FCity write FCity;
     property ZipCode: string read FZipCode write FZipCode;
@@ -72,6 +75,12 @@ begin
   FSubject := ASubject;
   FSalutation := ASalutation;
   FSignature := ASignature;
+end;
+
+function TMailMerge.GetFullName: string;
+{ Returns the full name }
+begin
+  Result := FName + ' ' + FFirstName;
 end;
 
 end.

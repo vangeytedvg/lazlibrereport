@@ -74,6 +74,17 @@ var
   newFileName, templateFileName: string;
 begin
 
+  // First Fill the remaining data of the Reporter object
+  Reporter.Subject := editSubject.Text;
+
+  // The Greeting
+  if groupSalutation.ItemIndex <> -1 then
+    Reporter.Salutation := groupSalutation.Items[groupSalutation.ItemIndex];
+
+  // The signature
+  if groupSignature.ItemIndex <> -1 then
+    Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
+
   templateFileName := 'file:///C:/temp/template.odt';
   newFileName := 'file:///C:/temp/Brief.odt';
 
@@ -148,13 +159,7 @@ begin
       Reporter.SocialSecurity :=
         SQLGeneralPurpose.FieldByName('socialsecurity').AsString;
 
-      // The Greeting
-      if groupSalutation.ItemIndex <> -1 then
-        Reporter.Subject := groupSalutation.Items[groupSalutation.ItemIndex];
 
-      // The signature
-      if groupSignature.ItemIndex <> -1 then;
-      Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
 
       MEMOFrom.Lines.Add(Reporter.Name);
     except
@@ -177,6 +182,8 @@ begin
   dbPath := 'C:\Development\Lazarus\LetterWizard\Twister.db';
   SQLConnection.DatabaseName := dbPath;
   SQLConnection.Connected := True;
+  SQLSenders.Active := True;
+
   Reporter := TMailMerge.Create;
   with SQLSenders do
   begin

@@ -1,11 +1,11 @@
 object mainForm: TmainForm
-  Left = 231
-  Height = 492
-  Top = 197
+  Left = 317
+  Height = 540
+  Top = 167
   Width = 569
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'
-  ClientHeight = 492
+  ClientHeight = 540
   ClientWidth = 569
   Color = 10276756
   Font.CharSet = ANSI_CHARSET
@@ -45109,8 +45109,20 @@ object mainForm: TmainForm
     }
     Stretch = True
   end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Height = 23
+    Top = 517
+    Width = 569
+    Panels = <    
+      item
+        Text = 'Letter Wizard'
+        Width = 50
+      end>
+    SimplePanel = False
+  end
   object SQLConnection: TSQLite3Connection
-    Connected = True
+    Connected = False
     LoginPrompt = False
     AfterConnect = SQLConnectionAfterConnect
     DatabaseName = 'C:\Development\Lazarus\LetterWizard\Twister.db'
@@ -45177,7 +45189,6 @@ object mainForm: TmainForm
         Precision = -1
         Size = 255
       end>
-    Active = True
     Database = SQLConnection
     Transaction = SQLTransaction
     SQL.Strings = (
@@ -45194,7 +45205,7 @@ object mainForm: TmainForm
     Top = 464
   end
   object SQLTransaction: TSQLTransaction
-    Active = True
+    Active = False
     Database = SQLConnection
     Left = 24
     Top = 400

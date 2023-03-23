@@ -12,7 +12,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
-  DBCtrls, ExtCtrls, ComObj, SQLite3Conn, SQLDB, DB, variants, mailmerge;
+  DBCtrls, ExtCtrls, ComCtrls, ComObj, SQLite3Conn, SQLDB, DB, variants,
+  mailmerge;
 
 type
 
@@ -36,6 +37,7 @@ type
     SQLSenders: TSQLQuery;
     SQLGeneralPurpose: TSQLQuery;
     SQLTransaction: TSQLTransaction;
+    StatusBar1: TStatusBar;
     procedure btnGenerateDocumentClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure cmbSendersChange(Sender: TObject);
@@ -71,6 +73,18 @@ var
   LOInstance, LOComponent, Text_, Cursor_, LoadParams, TextBody, ovc: variant;
   newFileName, templateFileName: string;
 begin
+
+  // First Fill the remaining data of the Reporter object
+  Reporter.Subject := editSubject.Text;
+  ShowMessage(Reporter.FullName);
+  exit;
+  // The Greeting
+  if groupSalutation.ItemIndex <> -1 then
+    Reporter.Salutation := groupSalutation.Items[groupSalutation.ItemIndex];
+
+  // The signature
+  if groupSignature.ItemIndex <> -1 then
+    Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
 
   templateFileName := 'file:///C:/temp/template.odt';
   newFileName := 'file:///C:/temp/Brief.odt';
@@ -146,13 +160,7 @@ begin
       Reporter.SocialSecurity :=
         SQLGeneralPurpose.FieldByName('socialsecurity').AsString;
 
-      // The Greeting
-      if groupSalutation.ItemIndex <> -1 then
-        Reporter.Subject := groupSalutation.Items[groupSalutation.ItemIndex];
 
-      // The signature
-      if groupSignature.ItemIndex <> -1 then;
-      Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
 
       MEMOFrom.Lines.Add(Reporter.Name);
     except
@@ -175,6 +183,8 @@ begin
   dbPath := 'C:\Development\Lazarus\LetterWizard\Twister.db';
   SQLConnection.DatabaseName := dbPath;
   SQLConnection.Connected := True;
+  SQLSenders.Active := True;
+
   Reporter := TMailMerge.Create;
   with SQLSenders do
   begin
