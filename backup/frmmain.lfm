@@ -1,12 +1,12 @@
 object mainForm: TmainForm
   Left = 317
-  Height = 540
+  Height = 681
   Top = 167
-  Width = 569
+  Width = 567
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'
-  ClientHeight = 540
-  ClientWidth = 569
+  ClientHeight = 681
+  ClientWidth = 567
   Color = 10276756
   Font.CharSet = ANSI_CHARSET
   Font.Color = clBlack
@@ -19,9 +19,9 @@ object mainForm: TmainForm
   Position = poDesktopCenter
   LCLVersion = '2.2.6.0'
   object btnGenerateDocument: TButton
-    Left = 330
+    Left = 332
     Height = 25
-    Top = 452
+    Top = 618
     Width = 144
     Caption = 'Brief Aanmaken'
     OnClick = btnGenerateDocumentClick
@@ -40,7 +40,7 @@ object mainForm: TmainForm
   end
   object MEMOFrom: TMemo
     Left = 185
-    Height = 80
+    Height = 116
     Top = 124
     Width = 368
     BorderSpacing.Bottom = 10
@@ -76,14 +76,14 @@ object mainForm: TmainForm
     Left = 186
     Height = 17
     Top = 108
-    Width = 61
-    Caption = 'Voorbeeld'
+    Width = 116
+    Caption = 'Afzender voorbeeld'
     ParentColor = False
   end
   object groupSalutation: TRadioGroup
-    Left = 186
+    Left = 188
     Height = 80
-    Top = 256
+    Top = 430
     Width = 369
     AutoFill = True
     Caption = 'Aanspreking'
@@ -117,9 +117,9 @@ object mainForm: TmainForm
     TabOrder = 3
   end
   object groupSignature: TRadioGroup
-    Left = 184
+    Left = 186
     Height = 80
-    Top = 348
+    Top = 522
     Width = 369
     AutoFill = True
     Caption = 'Ondertekening'
@@ -144,33 +144,33 @@ object mainForm: TmainForm
     TabOrder = 4
   end
   object Button1: TButton
-    Left = 478
+    Left = 480
     Height = 25
-    Top = 452
+    Top = 618
     Width = 75
     Caption = 'Sluit'
     OnClick = Button1Click
     TabOrder = 5
   end
   object Label4: TLabel
-    Left = 184
+    Left = 186
     Height = 17
-    Top = 210
+    Top = 384
     Width = 38
     Caption = 'Betreft'
     ParentColor = False
   end
   object editSubject: TEdit
-    Left = 186
+    Left = 188
     Height = 25
-    Top = 229
+    Top = 403
     Width = 367
     TabOrder = 6
     TextHint = 'Geef hier het onderwerp van de brief'
   end
   object Image1: TImage
     Left = 0
-    Height = 492
+    Height = 664
     Top = 0
     Width = 176
     Picture.Data = {
@@ -45112,14 +45112,33 @@ object mainForm: TmainForm
   object StatusBar1: TStatusBar
     Left = 0
     Height = 23
-    Top = 517
-    Width = 569
+    Top = 658
+    Width = 567
     Panels = <    
       item
         Text = 'Letter Wizard'
         Width = 50
       end>
     SimplePanel = False
+  end
+  object Label5: TLabel
+    Left = 184
+    Height = 17
+    Top = 248
+    Width = 22
+    Caption = 'Aan'
+    ParentColor = False
+  end
+  object MEMOTo: TMemo
+    Left = 184
+    Height = 116
+    Top = 264
+    Width = 368
+    BorderSpacing.Bottom = 10
+    BorderSpacing.Around = 10
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 8
   end
   object SQLConnection: TSQLite3Connection
     Connected = False

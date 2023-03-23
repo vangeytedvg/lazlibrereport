@@ -31,8 +31,10 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
+    Label5: TLabel;
     MEMOFrom: TMemo;
     groupSalutation: TRadioGroup;
+    MEMOTo: TMemo;
     SQLConnection: TSQLite3Connection;
     SQLSenders: TSQLQuery;
     SQLGeneralPurpose: TSQLQuery;
@@ -76,6 +78,8 @@ begin
 
   // First Fill the remaining data of the Reporter object
   Reporter.Subject := editSubject.Text;
+  Reporter.Destination := MemoTo.Text;
+  ShowMessage(Reporter.Destination);
 
   // The Greeting
   if groupSalutation.ItemIndex <> -1 then
@@ -136,6 +140,8 @@ var
   qryString: string;
   SenderFullName: string;
 begin
+
+  MEMOFrom.Clear;
   myItem := TCustomComboBoxItem(cmbSenders.items.Objects[cmbSenders.ItemIndex]);
   qryString := 'SELECT * FROM senders WHERE id=' + myItem.Value.ToString;
 
@@ -154,6 +160,7 @@ begin
       Reporter.FirstName := SQLGeneralPurpose.FieldByName('FirstName').AsString;
       Reporter.Address := SQLGeneralPurpose.FieldByName('Address').AsString;
       Reporter.ZipCode := SQLGeneralPurpose.FieldByName('ZipCode').AsString;
+      Reporter.City := SQLGeneralPurpose.FieldByName('City').AsString;
       Reporter.Phone := SQLGeneralPurpose.FieldByName('Phone').AsString;
       Reporter.EMail := SQLGeneralPurpose.FieldByName('Email').AsString;
       Reporter.SocialSecurity :=
@@ -161,12 +168,16 @@ begin
 
 
 
-      MEMOFrom.Lines.Add(Reporter.Name);
+      MEMOFrom.Lines.Add(Reporter.FullName);
+      MemoFrom.Lines.Add(Reporter.Address);
+      MemoFrom.Lines.Add(Reporter.ZipCode + '  ' + Reporter.City);
+      MemoFrom.Lines.Add('GSM : ' + Reporter.Phone);
+      MemoFrom.Lines.Add('Email ' + Reporter.Email);
     except
       ShowMessage('Error occured');
-
     end;
   end;
+
 end;
 
 procedure TmainForm.DS_SendersDataChange(Sender: TObject; Field: TField);

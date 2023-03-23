@@ -78,6 +78,7 @@ begin
 end;
 
 function TMailMerge.GetFullName: string;
+{ Returns the full name }
 begin
   Result := FName + ' ' + FFirstName;
 end;

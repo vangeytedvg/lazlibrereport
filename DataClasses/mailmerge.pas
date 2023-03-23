@@ -28,7 +28,8 @@ type
     FSubject: string;
     FSalutation: string;
     FSignature: string;
-    function GetFullName:string;
+    FTo: string;
+    function GetFullName: string;
   public
     property Name: string read FName write FName;
     property FirstName: string read FFirstName write FFirstName;
@@ -42,6 +43,7 @@ type
     property Subject: string read FSubject write FSubject;
     property Salutation: string read FSalutation write FSalutation;
     property Signature: string read FSignature write FSignature;
+    property Destination: string read FTo write FTo;
     constructor Create(); overload;
     constructor Create(const AName, AFirstName, AAddress, ACity,
       AZipCode, APhone, AEmail, ASocialSecurity, ASubject, ASalutation,
@@ -60,9 +62,9 @@ begin
 end;
 
 { Class constructor }
-constructor TMailMerge.Create(
-  const AName, AFirstName, AAddress, ACity, AZipCode, APhone,
-  AEmail, ASocialSecurity, ASubject, ASalutation, ASignature: string);
+constructor TMailMerge.Create(const AName, AFirstName, AAddress,
+  ACity, AZipCode, APhone, AEmail, ASocialSecurity, ASubject,
+  ASalutation, ASignature: string);
 begin
   FName := AName;
   FFirstName := AFirstName;
@@ -78,7 +80,7 @@ begin
 end;
 
 function TMailMerge.GetFullName: string;
-{ Returns the full name }
+  { Returns the full name }
 begin
   Result := FName + ' ' + FFirstName;
 end;
