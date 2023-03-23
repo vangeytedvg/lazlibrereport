@@ -31,7 +31,6 @@ type
     Label3: TLabel;
     Label4: TLabel;
     MEMOFrom: TMemo;
-    Panel1: TPanel;
     groupSalutation: TRadioGroup;
     SQLConnection: TSQLite3Connection;
     SQLSenders: TSQLQuery;
@@ -99,14 +98,12 @@ begin
   TextBody := LOComponent.loadComponentFromURL(newFileName, '_blank', 0, LoadParams);
   Text_ := TextBody.getText();
 
+  // Move the cursor to a new location
   oVC := TextBody.getCurrentController.getViewCursor;
-
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  //  Cursor_.gotoRange(oVC, true);
   oVC.goDown(8, False);
-  //  Cursor_.gotoRange(ovc, false);
-  //  Cursor_.gotoPreviousWord(true);
+
   Text_.insertString(oVC.getStart(), 'JWAAAAJ', False);
 end;
 

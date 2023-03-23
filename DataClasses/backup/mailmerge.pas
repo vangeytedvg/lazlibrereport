@@ -24,6 +24,8 @@ type
     FPhone: string;
     FEmail: string;
     FSocialSecurity: string;
+    FSubject: string;
+    FSalutation: string;
   public
     property Name: string read FName write FName;
     property FirstName: string read FFirstName write FFirstName;
@@ -45,6 +47,7 @@ implementation
 
 constructor TMailMerge.Create;
 begin
+  // Empty contructor
 end;
 
 { Class constructor }

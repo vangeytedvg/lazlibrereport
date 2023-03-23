@@ -31,7 +31,6 @@ type
     Label3: TLabel;
     Label4: TLabel;
     MEMOFrom: TMemo;
-    Panel1: TPanel;
     groupSalutation: TRadioGroup;
     SQLConnection: TSQLite3Connection;
     SQLSenders: TSQLQuery;
