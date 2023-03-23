@@ -20,7 +20,7 @@ type
   { TmainForm }
 
   TmainForm = class(TForm)
-    BitBtn1: TBitBtn;
+    btnSettings: TBitBtn;
     btnGenerateDocument: TButton;
     Button1: TButton;
     cbSocialSecurityInclude: TCheckBox;
@@ -43,6 +43,7 @@ type
     SQLTransaction: TSQLTransaction;
     StatusBar: TStatusBar;
     procedure btnGenerateDocumentClick(Sender: TObject);
+    procedure btnSettingsClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure cbSocialSecurityIncludeChange(Sender: TObject);
     procedure cmbSendersChange(Sender: TObject);
@@ -61,7 +62,7 @@ var
 implementation
 
 uses
-  CustomComboItem;
+  CustomComboItem, frmSettings;
 
 {$R *.lfm}
 
@@ -155,6 +156,14 @@ begin
   oVC.JumpToStartOfPage;
   oVC.goDown(8, False);
 
+end;
+
+procedure TmainForm.btnSettingsClick(Sender: TObject);
+var
+  FSetting : TFormSettings;
+begin
+  FSetting := TFormSettings.Create(self);
+  FSetting.ShowModal;
 end;
 
 procedure TmainForm.Button1Click(Sender: TObject);

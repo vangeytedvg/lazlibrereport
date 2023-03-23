@@ -1,10 +1,10 @@
-object Form1: TForm1
-  Left = 420
-  Height = 196
-  Top = 199
+object FormSettings: TFormSettings
+  Left = 289
+  Height = 200
+  Top = 135
   Width = 589
-  Caption = 'Settings'
-  ClientHeight = 196
+  Caption = 'Instellingen'
+  ClientHeight = 200
   ClientWidth = 589
   LCLVersion = '2.2.6.0'
   object Label1: TLabel
@@ -81,14 +81,14 @@ object Form1: TForm1
     Caption = 'Bewaar'
     TabOrder = 3
   end
-  object btnClose: TButton
+  object btnCLoseM: TButton
     Left = 503
     Height = 25
     Top = 160
     Width = 75
     Cancel = True
     Caption = 'Sluit'
-    OnClick = btnCloseClick
+    OnClick = btnCLoseMClick
     TabOrder = 4
   end
   object Image1: TImage

@@ -1,20 +1,23 @@
-unit frmSettings;
+unit frmsettings;
 
 {$mode ObjFPC}{$H+}
 
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Buttons;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
+  ExtCtrls;
 
 type
 
-  { TForm1 }
+  { TFormSettings }
 
   TFormSettings = class(TForm)
-    btnSave: TButton;
     btnClose: TButton;
+    btnOutputPath: TSpeedButton;
+    btnSave: TButton;
+    btnTemplate: TSpeedButton;
+    btnTwisterDB: TSpeedButton;
     editDBPath: TEdit;
     editDBPath1: TEdit;
     editDBPath2: TEdit;
@@ -22,10 +25,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    btnTwisterDB: TSpeedButton;
-    btnTemplate: TSpeedButton;
-    btnOutputPath: TSpeedButton;
-    procedure btnCloseClick(Sender: TObject);
   private
 
   public
@@ -33,18 +32,11 @@ type
   end;
 
 var
-  FormSettings: TForm1;
+  FormSettings: TFormSettings;
 
 implementation
 
 {$R *.lfm}
-
-{ TForm1 }
-
-procedure TFormSettings.btnCloseClick(Sender: TObject);
-begin
-  Close;
-end;
 
 end.
 

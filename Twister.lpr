@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazcontrols, frmMain, CustomComboItem, mailmerge, frmSettings
+  Forms, lazcontrols, frmMain, CustomComboItem, mailmerge, frmsettings
   { you can add units after this };
 
 {$R *.res}

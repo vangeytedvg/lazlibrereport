@@ -159,8 +159,11 @@ begin
 end;
 
 procedure TmainForm.btnSettingsClick(Sender: TObject);
+var
+  FSetting : TFormSettings;
 begin
-  FormSettings.ShowModal;
+  FSetting := TFormSettings.Create(self);
+  FSetting.ShowModal;
 end;
 
 procedure TmainForm.Button1Click(Sender: TObject);

@@ -61,10 +61,9 @@
       <Unit>
         <Filename Value="frmsettings.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="Form1"/>
+        <ComponentName Value="FormSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmSettings"/>
       </Unit>
     </Units>
   </ProjectOptions>

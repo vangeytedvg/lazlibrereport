@@ -8,9 +8,8 @@
       <Unit>
         <Filename Value="Twister.lpr"/>
         <IsPartOfProject Value="True"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="40" Y="23"/>
+        <EditorIndex Value="3"/>
+        <CursorPos X="60" Y="23"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
       </Unit>
@@ -21,8 +20,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmMain"/>
-        <TopLine Value="161"/>
-        <CursorPos X="26" Y="163"/>
+        <TopLine Value="129"/>
+        <CursorPos X="3" Y="165"/>
         <UsageCount Value="32"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -56,14 +55,10 @@
       </Unit>
       <Unit>
         <Filename Value="frmsettings.pas"/>
-        <IsPartOfProject Value="True"/>
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <UnitName Value="frmSettings"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="12"/>
-        <CursorPos X="30" Y="36"/>
+        <EditorIndex Value="2"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
       </Unit>
@@ -74,16 +69,20 @@
         <CursorPos Y="2053"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="frmsettings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormSettings"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
     </Units>
     <JumpHistory HistoryIndex="28">
-      <Position>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="176" Column="61" TopLine="171"/>
-      </Position>
-      <Position>
-        <Filename Value="frmmain.pas"/>
-        <Caret Line="78" Column="21" TopLine="52"/>
-      </Position>
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="184" Column="3" TopLine="162"/>
@@ -192,10 +191,29 @@
         <Filename Value="Twister.lpr"/>
         <Caret Line="23" Column="53"/>
       </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="159" Column="5" TopLine="148"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="145" Column="53" TopLine="130"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>
     </RunParams>
   </ProjectSession>
+  <Debugging>
+    <BreakPoints>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmsettings.pas"/>
+        <Line Value="30"/>
+      </Item>
+    </BreakPoints>
+  </Debugging>
 </CONFIG>
