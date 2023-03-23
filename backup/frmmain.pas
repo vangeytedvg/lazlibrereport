@@ -20,24 +20,31 @@ type
 
   TmainForm = class(TForm)
     btnGenerateDocument: TButton;
+    Button1: TButton;
     cmbSenders: TComboBox;
     DS_Senders: TDataSource;
+    editSubject: TEdit;
+    groupSignature: TRadioGroup;
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     MEMOFrom: TMemo;
     Panel1: TPanel;
+    groupSalutation: TRadioGroup;
     SQLConnection: TSQLite3Connection;
     SQLSenders: TSQLQuery;
     SQLGeneralPurpose: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     procedure btnGenerateDocumentClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure cmbSendersChange(Sender: TObject);
 
     procedure cmbSendersSelect(Sender: TObject);
     procedure DS_SendersDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure groupSalutationClick(Sender: TObject);
     procedure SQLConnectionAfterConnect(Sender: TObject);
   private
 
@@ -103,6 +110,11 @@ begin
   Text_.insertString(oVC.getStart(), 'JWAAAAJ', False);
 end;
 
+procedure TmainForm.Button1Click(Sender: TObject);
+begin
+  Close;
+end;
+
 procedure TmainForm.cmbSendersChange(Sender: TObject);
 begin
 
@@ -118,6 +130,8 @@ begin
   myItem := TCustomComboBoxItem(cmbSenders.items.Objects
     [cmbSenders.ItemIndex]);
   qryString := 'SELECT * FROM senders WHERE id=' + myItem.Value.ToString;
+
+  // Execute the sql statement and store the details of the sender.
   with SQLGeneralPurpose do
   begin
     Close;
@@ -181,6 +195,11 @@ begin
       SQLSenders.FieldByName('Name').AsString));
     SQLSenders.Next;
   end;
+end;
+
+procedure TmainForm.groupSalutationClick(Sender: TObject);
+begin
+
 end;
 
 procedure TmainForm.SQLConnectionAfterConnect(Sender: TObject);

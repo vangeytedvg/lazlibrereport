@@ -1,30 +1,35 @@
 object mainForm: TmainForm
-  Left = 537
-  Height = 511
-  Top = 289
-  Width = 624
+  Left = 30
+  Height = 492
+  Top = 186
+  Width = 569
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'
-  ClientHeight = 511
-  ClientWidth = 624
-  Color = 11645361
+  ClientHeight = 492
+  ClientWidth = 569
+  Color = 10276756
+  Font.CharSet = ANSI_CHARSET
+  Font.Color = clBlack
+  Font.Height = -13
+  Font.Name = 'Segoe UI'
+  Font.Pitch = fpVariable
+  Font.Quality = fqDraft
   OnCreate = FormCreate
-  ParentFont = True
   Position = poDesktopCenter
   LCLVersion = '2.2.6.0'
   object btnGenerateDocument: TButton
-    Left = 352
+    Left = 330
     Height = 25
-    Top = 400
-    Width = 192
+    Top = 452
+    Width = 144
     Caption = 'Brief Aanmaken'
     OnClick = btnGenerateDocumentClick
     TabOrder = 0
   end
   object cmbSenders: TComboBox
-    Left = 192
+    Left = 186
     Height = 25
-    Top = 80
+    Top = 73
     Width = 368
     ItemHeight = 17
     OnChange = cmbSendersChange
@@ -33,13 +38,14 @@ object mainForm: TmainForm
     TabOrder = 1
   end
   object MEMOFrom: TMemo
-    Left = 192
-    Height = 104
-    Top = 136
+    Left = 185
+    Height = 80
+    Top = 124
     Width = 368
     BorderSpacing.Bottom = 10
     BorderSpacing.Around = 10
     ReadOnly = True
+    ScrollBars = ssAutoBoth
     TabOrder = 2
   end
   object Panel1: TPanel
@@ -49,15 +55,14 @@ object mainForm: TmainForm
     Width = 169
     BevelColor = clBlack
     BevelOuter = bvNone
-    Caption = 'Panel1'
     ClientHeight = 509
     ClientWidth = 169
     Color = clWhite
     ParentColor = False
     TabOrder = 3
     object Image1: TImage
-      Left = 16
-      Height = 368
+      Left = 24
+      Height = 248
       Top = 8
       Width = 144
       BorderSpacing.InnerBorder = 10
@@ -41047,9 +41052,9 @@ object mainForm: TmainForm
     end
   end
   object Label1: TLabel
-    Left = 190
+    Left = 184
     Height = 37
-    Top = 12
+    Top = 8
     Width = 175
     Caption = 'Letter Wizard'
     Font.CharSet = ANSI_CHARSET
@@ -41062,26 +41067,107 @@ object mainForm: TmainForm
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 192
+    Left = 186
     Height = 17
-    Top = 59
+    Top = 55
     Width = 126
     Caption = 'Afzender van de brief'
     ParentColor = False
   end
   object Label3: TLabel
-    Left = 192
+    Left = 186
     Height = 17
-    Top = 112
+    Top = 108
     Width = 61
     Caption = 'Voorbeeld'
+    ParentColor = False
+  end
+  object groupSalutation: TRadioGroup
+    Left = 184
+    Height = 80
+    Top = 260
+    Width = 369
+    AutoFill = True
+    Caption = 'Aanspreking'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 58
+    ClientWidth = 365
+    Color = 10276756
+    Columns = 2
     Font.CharSet = ANSI_CHARSET
+    Font.Color = clBlack
     Font.Height = -13
     Font.Name = 'Segoe UI'
     Font.Pitch = fpVariable
     Font.Quality = fqDraft
-    ParentColor = False
+    Items.Strings = (
+      'Beste,'
+      'Geachte,'
+      'Mevrouw,'
+      'Mijnheer,'
+    )
+    OnClick = groupSalutationClick
+    ParentBackground = False
     ParentFont = False
+    ParentColor = False
+    TabOrder = 4
+  end
+  object groupSignature: TRadioGroup
+    Left = 184
+    Height = 80
+    Top = 348
+    Width = 369
+    AutoFill = True
+    Caption = 'Ondertekening'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 2
+    ClientHeight = 58
+    ClientWidth = 365
+    Columns = 2
+    Items.Strings = (
+      'Met de meeste hoogachting,'
+      'Met vriendelijke groet,'
+      'Met vriendelijke groeten,'
+      'Met achting,'
+      'Hoogachtend,'
+    )
+    TabOrder = 5
+  end
+  object Button1: TButton
+    Left = 478
+    Height = 25
+    Top = 452
+    Width = 75
+    Caption = 'Sluit'
+    OnClick = Button1Click
+    TabOrder = 6
+  end
+  object Label4: TLabel
+    Left = 184
+    Height = 17
+    Top = 210
+    Width = 38
+    Caption = 'Betreft'
+    ParentColor = False
+  end
+  object editSubject: TEdit
+    Left = 186
+    Height = 25
+    Top = 229
+    Width = 367
+    TabOrder = 7
+    TextHint = 'Geef hier het onderwerp van de brief'
   end
   object SQLConnection: TSQLite3Connection
     Connected = True
@@ -41091,8 +41177,8 @@ object mainForm: TmainForm
     KeepConnection = False
     Transaction = SQLTransaction
     AlwaysUseBigint = False
-    Left = 496
-    Top = 440
+    Left = 120
+    Top = 464
   end
   object SQLSenders: TSQLQuery
     IndexName = 'DEFAULT_ORDER'
@@ -41164,14 +41250,14 @@ object mainForm: TmainForm
     )
     Params = <>
     Macros = <>
-    Left = 424
-    Top = 440
+    Left = 24
+    Top = 464
   end
   object SQLTransaction: TSQLTransaction
     Active = True
     Database = SQLConnection
-    Left = 224
-    Top = 440
+    Left = 24
+    Top = 400
   end
   object SQLGeneralPurpose: TSQLQuery
     IndexName = 'DEFAULT_ORDER'
@@ -41237,7 +41323,7 @@ object mainForm: TmainForm
     )
     Params = <>
     Macros = <>
-    Left = 336
-    Top = 440
+    Left = 120
+    Top = 400
   end
 end

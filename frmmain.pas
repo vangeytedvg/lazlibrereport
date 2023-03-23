@@ -20,24 +20,31 @@ type
 
   TmainForm = class(TForm)
     btnGenerateDocument: TButton;
+    Button1: TButton;
     cmbSenders: TComboBox;
     DS_Senders: TDataSource;
+    editSubject: TEdit;
+    groupSignature: TRadioGroup;
     Image1: TImage;
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     MEMOFrom: TMemo;
     Panel1: TPanel;
+    groupSalutation: TRadioGroup;
     SQLConnection: TSQLite3Connection;
     SQLSenders: TSQLQuery;
     SQLGeneralPurpose: TSQLQuery;
     SQLTransaction: TSQLTransaction;
     procedure btnGenerateDocumentClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
     procedure cmbSendersChange(Sender: TObject);
 
     procedure cmbSendersSelect(Sender: TObject);
     procedure DS_SendersDataChange(Sender: TObject; Field: TField);
     procedure FormCreate(Sender: TObject);
+    procedure groupSalutationClick(Sender: TObject);
     procedure SQLConnectionAfterConnect(Sender: TObject);
   private
 
@@ -92,15 +99,18 @@ begin
   TextBody := LOComponent.loadComponentFromURL(newFileName, '_blank', 0, LoadParams);
   Text_ := TextBody.getText();
 
+  // Move the cursor to a new location
   oVC := TextBody.getCurrentController.getViewCursor;
-
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  //  Cursor_.gotoRange(oVC, true);
   oVC.goDown(8, False);
-  //  Cursor_.gotoRange(ovc, false);
-  //  Cursor_.gotoPreviousWord(true);
+
   Text_.insertString(oVC.getStart(), 'JWAAAAJ', False);
+end;
+
+procedure TmainForm.Button1Click(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TmainForm.cmbSendersChange(Sender: TObject);
@@ -183,6 +193,11 @@ begin
       SQLSenders.FieldByName('Name').AsString));
     SQLSenders.Next;
   end;
+end;
+
+procedure TmainForm.groupSalutationClick(Sender: TObject);
+begin
+
 end;
 
 procedure TmainForm.SQLConnectionAfterConnect(Sender: TObject);
