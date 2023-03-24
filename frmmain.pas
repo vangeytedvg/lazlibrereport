@@ -138,6 +138,12 @@ begin
     MEMOTo.SetFocus;
     exit;
   end;
+  if editSubject.Text = '' then
+  begin
+    ShowMessage('Een onderwerp is verplicht!');
+    editSubject.SetFocus;
+    exit;
+  end;
   // Check if a sender was selected
   if cmbSenders.ItemIndex <> -1 then
   begin
@@ -205,6 +211,11 @@ begin
   StatusBar.Panels[0].Text := 'Datum invoegen...';
   Application.ProcessMessages;
 
+  // Replace the {TO} tag
+  Text_ := TextBody.createReplaceDescriptor;
+  Text_.setSearchString('{TO}');
+  Text_.setReplaceString(MEMOTo.Text);
+  TextBody.ReplaceAll(Text_);
 
   // Replace the {SENDDATECITY} tag
   DocDate := Now;
@@ -214,8 +225,22 @@ begin
   Text_.setReplaceString(FormattedDateCity);
   TextBody.ReplaceAll(Text_);
 
+  // Replace the {SUBJECT} tag
+  Text_ := TextBody.createReplaceDescriptor;
+  Text_.setSearchString('{SUBJECT}');
+  Text_.setReplaceString(Reporter.Subject);
+  TextBody.ReplaceAll(Text_);
+
+  // Replace the {SIGNATURE} tag
+  Text_ := TextBody.createReplaceDescriptor;
+  Text_.setSearchString('{SIGNATURE}');
+  Text_.setReplaceString(Reporter.FullName);
+  TextBody.ReplaceAll(Text_);
+
   StatusBar.Panels[0].Text := 'Gegenereerd document opslaan...';
   Application.ProcessMessages;
+
+
 
   // Save the new file
   TextBody.storeToURL(newFileName, VarArrayCreate([0, 0], varVariant));

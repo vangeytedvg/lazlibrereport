@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmMain"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="124"/>
-        <CursorPos X="10" Y="139"/>
+        <TopLine Value="212"/>
+        <CursorPos X="43" Y="237"/>
         <UsageCount Value="67"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -38,10 +38,11 @@
         <Filename Value="DataClasses\mailmerge.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MailMerge"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="42"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="21"/>
         <CursorPos X="45" Y="52"/>
         <UsageCount Value="64"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="frmsettings.pas"/>
@@ -49,7 +50,7 @@
         <ComponentName Value="FormSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <CursorPos X="31" Y="15"/>
         <UsageCount Value="55"/>
         <Loaded Value="True"/>
@@ -59,7 +60,7 @@
         <Filename Value="settings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Settings"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="14"/>
         <CursorPos X="66" Y="25"/>
         <UsageCount Value="26"/>
@@ -73,14 +74,14 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="11"/>
         <CursorPos X="9" Y="46"/>
-        <UsageCount Value="17"/>
+        <UsageCount Value="16"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\customform.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="2034"/>
         <CursorPos Y="2053"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="C:\lazarus\lcl\include\control.inc"/>
@@ -90,7 +91,7 @@
         <UsageCount Value="11"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="22">
+    <JumpHistory HistoryIndex="24">
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="174" Column="26" TopLine="143"/>
@@ -182,6 +183,14 @@
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="178" Column="49" TopLine="157"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="231" Column="31" TopLine="216"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="60" Column="5" TopLine="35"/>
       </Position>
     </JumpHistory>
     <RunParams>
