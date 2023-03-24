@@ -206,6 +206,8 @@ begin
   Application.ProcessMessages;
 
   // Replace the {SENDER} tag
+  If cbSocialSecurityInclude.Checked then
+  MEMOFrom.Text := MEMOFrom.Text + 'RijksRegister : ' + Reporter.SocialSecurity;
   Text_ := TextBody.createReplaceDescriptor;
   Text_.setSearchString('{SENDER}');
   Text_.setReplaceString(MEMOFrom.Text);
@@ -270,11 +272,11 @@ begin
   StatusBar.Panels[0].Text := 'Klaar...';
   Application.ProcessMessages;
 
-  // Move the cursor to a new location
+  // Move the cursor to the place where the user can start typing
   oVC := TextBody.getCurrentController.getViewCursor;
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  oVC.goDown(15, False);
+  oVC.goDown(27, False);
 
 end;
 
@@ -300,6 +302,7 @@ end;
 
 procedure TmainForm.cbSocialSecurityIncludeChange(Sender: TObject);
 begin
+
 end;
 
 procedure TmainForm.cmbSendersChange(Sender: TObject);

@@ -1,7 +1,7 @@
 object mainForm: TmainForm
-  Left = 1003
+  Left = 307
   Height = 681
-  Top = 158
+  Top = 137
   Width = 567
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'
@@ -45408,7 +45408,7 @@ object mainForm: TmainForm
   object SQLTransaction: TSQLTransaction
     Active = False
     Database = SQLConnection
-    Left = 24
+    Left = 32
     Top = 400
   end
   object SQLGeneralPurpose: TSQLQuery

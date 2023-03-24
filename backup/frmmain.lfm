@@ -1,7 +1,7 @@
 object mainForm: TmainForm
-  Left = 1003
+  Left = 283
   Height = 681
-  Top = 158
+  Top = 126
   Width = 567
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'
@@ -25,7 +25,7 @@ object mainForm: TmainForm
     Width = 144
     Caption = 'Brief Aanmaken'
     OnClick = btnGenerateDocumentClick
-    TabOrder = 0
+    TabOrder = 8
   end
   object cmbSenders: TComboBox
     Left = 184
@@ -121,7 +121,7 @@ object mainForm: TmainForm
     ParentColor = False
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 3
+    TabOrder = 5
   end
   object groupSignature: TRadioGroup
     Left = 186
@@ -152,7 +152,7 @@ object mainForm: TmainForm
     OnClick = groupSignatureClick
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 4
+    TabOrder = 6
   end
   object Button1: TButton
     Left = 480
@@ -162,7 +162,7 @@ object mainForm: TmainForm
     Cancel = True
     Caption = 'Sluit'
     OnClick = Button1Click
-    TabOrder = 5
+    TabOrder = 9
   end
   object Label4: TLabel
     Left = 186
@@ -180,7 +180,7 @@ object mainForm: TmainForm
     Width = 367
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 6
+    TabOrder = 4
     TextHint = 'Geef hier het onderwerp van de brief'
   end
   object Image1: TImage
@@ -45152,7 +45152,7 @@ object mainForm: TmainForm
     BorderSpacing.Bottom = 10
     BorderSpacing.Around = 10
     ScrollBars = ssAutoBoth
-    TabOrder = 8
+    TabOrder = 3
   end
   object cbSocialSecurityInclude: TCheckBox
     Left = 193
@@ -45164,7 +45164,7 @@ object mainForm: TmainForm
     OnChange = cbSocialSecurityIncludeChange
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 9
+    TabOrder = 7
   end
   object btnSettings: TBitBtn
     Left = 16
@@ -45305,7 +45305,7 @@ object mainForm: TmainForm
       B20900000000A4A1A0C08F8D8C74000000000000000000000000
     }
     OnClick = btnSettingsClick
-    TabOrder = 10
+    TabOrder = 11
   end
   object Label6: TLabel
     Left = 184
@@ -45320,7 +45320,7 @@ object mainForm: TmainForm
     Height = 25
     Top = 67
     Width = 365
-    TabOrder = 11
+    TabOrder = 0
     TextHint = 'Geef een betekenisvolle naam voor de brief'
   end
   object SQLConnection: TSQLite3Connection
@@ -45408,7 +45408,7 @@ object mainForm: TmainForm
   object SQLTransaction: TSQLTransaction
     Active = False
     Database = SQLConnection
-    Left = 24
+    Left = 32
     Top = 400
   end
   object SQLGeneralPurpose: TSQLQuery
