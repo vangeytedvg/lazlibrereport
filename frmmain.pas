@@ -287,7 +287,7 @@ begin
   oVC := TextBody.getCurrentController.getViewCursor;
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  oVC.goDown(27, False);
+  oVC.goDown(IniSettings.StartLine, False);
 
 end;
 

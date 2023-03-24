@@ -1,10 +1,10 @@
 object FormSettings: TFormSettings
   Left = 614
-  Height = 200
+  Height = 254
   Top = 259
   Width = 589
   Caption = 'Instellingen'
-  ClientHeight = 200
+  ClientHeight = 254
   ClientWidth = 589
   Color = 12238683
   Font.Height = -13
@@ -51,7 +51,7 @@ object FormSettings: TFormSettings
     Left = 160
     Height = 25
     Top = 80
-    Width = 360
+    Width = 368
     OnChange = PathChanged
     TabOrder = 1
     TextHint = 'Selecteer pad naar Template.odt'
@@ -92,7 +92,7 @@ object FormSettings: TFormSettings
   object btnSave: TButton
     Left = 424
     Height = 25
-    Top = 160
+    Top = 216
     Width = 75
     Caption = 'Bewaar'
     OnClick = btnSaveClick
@@ -101,7 +101,7 @@ object FormSettings: TFormSettings
   object btnCLoseM: TButton
     Left = 503
     Height = 25
-    Top = 160
+    Top = 216
     Width = 75
     Cancel = True
     Caption = 'Sluit'
@@ -474,6 +474,26 @@ object FormSettings: TFormSettings
       0000000000000000000000000000000000000000000000000000
     }
     OnClick = btnEditTemplateClick
+  end
+  object Label4: TLabel
+    Left = 162
+    Height = 17
+    Top = 162
+    Width = 165
+    Caption = 'Lijn nr begin gebruikerstekst'
+    ParentColor = False
+  end
+  object spinStartLineNr: TSpinEditEx
+    Left = 160
+    Height = 25
+    Top = 182
+    Width = 184
+    MaxLength = 0
+    TabOrder = 5
+    MaxValue = 40
+    MinValue = 1
+    NullValue = 0
+    Value = 1
   end
   object SelFile: TOpenDialog
     Left = 32

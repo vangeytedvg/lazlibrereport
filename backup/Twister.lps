@@ -8,10 +8,9 @@
       <Unit>
         <Filename Value="Twister.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="13"/>
-        <UsageCount Value="69"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="70"/>
       </Unit>
       <Unit>
         <Filename Value="customcomboitem.pas"/>
@@ -19,12 +18,13 @@
         <UnitName Value="CustomComboItem"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="36" Y="15"/>
-        <UsageCount Value="68"/>
+        <UsageCount Value="69"/>
       </Unit>
       <Unit>
         <Filename Value="frmmain.lfm"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="frmmain.pas"/>
@@ -33,17 +33,18 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmMain"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="114"/>
-        <CursorPos X="17" Y="145"/>
-        <UsageCount Value="69"/>
+        <TopLine Value="259"/>
+        <CursorPos X="16" Y="290"/>
+        <UsageCount Value="70"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="frmsettings.lfm"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="20"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="LFM"/>
       </Unit>
       <Unit>
         <Filename Value="frmsettings.pas"/>
@@ -51,37 +52,38 @@
         <ComponentName Value="FormSettings"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="63"/>
-        <CursorPos X="27" Y="71"/>
-        <UsageCount Value="57"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="122"/>
+        <CursorPos X="44" Y="145"/>
+        <UsageCount Value="58"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="README.md"/>
         <IsPartOfProject Value="True"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="21"/>
+        <DefaultSyntaxHighlighter Value="None"/>
       </Unit>
       <Unit>
         <Filename Value="settings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Settings"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="14"/>
-        <CursorPos X="66" Y="25"/>
-        <UsageCount Value="28"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="18"/>
+        <CursorPos X="63" Y="56"/>
+        <UsageCount Value="29"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="DataClasses\mailmerge.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MailMerge"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="42"/>
         <CursorPos X="59" Y="80"/>
-        <UsageCount Value="66"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="67"/>
       </Unit>
       <Unit>
         <Filename Value="imgs\frmsettings.pas"/>
@@ -108,31 +110,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="frmsettings.pas"/>
-        <Caret Line="53" Column="31" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="frmsettings.pas"/>
-        <Caret Line="77" Column="61" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="frmsettings.pas"/>
-        <Caret Line="78" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="frmsettings.pas"/>
-        <Caret Line="77" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="frmsettings.pas"/>
-        <Caret Line="78" TopLine="58"/>
-      </Position>
-      <Position>
-        <Filename Value="frmsettings.pas"/>
-        <Caret Line="77" TopLine="58"/>
-      </Position>
+    <JumpHistory HistoryIndex="25">
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="178" Column="49" TopLine="157"/>
@@ -172,10 +150,6 @@
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="326" TopLine="257"/>
-      </Position>
-      <Position>
-        <Filename Value="Twister.lpr"/>
-        <Caret Line="13" Column="10"/>
       </Position>
       <Position>
         <Filename Value="frmmain.pas"/>
@@ -228,6 +202,18 @@
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="361" Column="18" TopLine="330"/>
+      </Position>
+      <Position>
+        <Filename Value="frmsettings.pas"/>
+        <Caret Line="71" Column="27" TopLine="63"/>
+      </Position>
+      <Position>
+        <Filename Value="frmsettings.pas"/>
+        <Caret Line="72" Column="27" TopLine="64"/>
+      </Position>
+      <Position>
+        <Filename Value="frmsettings.pas"/>
+        <Caret Line="73" Column="27" TopLine="65"/>
       </Position>
     </JumpHistory>
     <RunParams>

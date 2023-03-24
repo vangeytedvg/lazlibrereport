@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, Buttons,
-  ExtCtrls, IniFiles, LCLIntf;
+  ExtCtrls, IniFiles, LCLIntf, SpinEx;
 
 type
 
@@ -31,9 +31,11 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    Label4: TLabel;
     SelFile: TOpenDialog;
     SelDir: TSelectDirectoryDialog;
     btnEditTemplate: TSpeedButton;
+    spinStartLineNr: TSpinEditEx;
     procedure btnCLoseMClick(Sender: TObject);
     procedure btnEditTemplateClick(Sender: TObject);
     procedure btnOutputPathClick(Sender: TObject);
@@ -134,6 +136,7 @@ begin
     AppSettings.dbPath := editDBPath.Text;
     AppSettings.TemplatePath := editTemplatePath.Text;
     AppSettings.NewDocStorage := editNewDocPath.Text;
+    AppSettings.StartLine:= spinStartLineNr.Value;
     AppSettings.WriteSettings;
   finally
     AppSettings.Free;
@@ -150,6 +153,7 @@ begin
     editDBPath.Text := AppSettings.dbPath;
     editTemplatePath.Text := AppSettings.TemplatePath;
     editNewDocPath.Text := AppSettings.NewDocStorage;
+    spinStartLineNr.Value:= AppSettings.StartLine;
   finally
     AppSettings.Free;
   end;

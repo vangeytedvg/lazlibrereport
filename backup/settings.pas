@@ -1,5 +1,5 @@
 {
- Class that holds the Settings for this application
+ Settings manager for this application,
  Author : Danny Van Geyte
  Created: 24/03/2023
 }

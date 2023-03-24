@@ -140,7 +140,7 @@ begin
     myFile := IniSettings.NewDocStorage + '\' + edtDocName.Text + '.odt';
     if FileExists(myFile) then
     begin
-      if MessageDlg('Waarschuwing', 'Het bestand ' + edtDocName.Text + ' bestaat reeds. \nWilt U het overschrijven?',
+      if MessageDlg('Waarschuwing', 'Het bestand ' + edtDocName.Text + ' bestaat reeds. Wilt U het overschrijven?',
            mtConfirmation, [mbYes, mbNo], 0) = mrNo then
            exit;
     end;
@@ -287,7 +287,7 @@ begin
   oVC := TextBody.getCurrentController.getViewCursor;
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  oVC.goDown(27, False);
+  oVC.goDown(23, False);
 
 end;
 

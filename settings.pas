@@ -19,11 +19,13 @@ type
     FTemplatePath: string;
     FNewDocStorage: string;
     FIniFile: string;
+    FStartLine: integer;
   public
     property dbPath: string read FDbPath write FDbPath;
     property TemplatePath: string read FTemplatePath write FTemplatePath;
     property NewDocStorage: string read FNewDocStorage write FNewDocStorage;
     property IniFile: string read FIniFile write FIniFile;
+    property StartLine: integer read FStartLine write FStartLine;
     constructor Create(AIniFile: string); overload;
     procedure WriteSettings;
     procedure ReadSettings;
@@ -47,6 +49,7 @@ begin
     myIni.WriteString('Settings', 'DataBasePath', dbPath);
     myIni.WriteString('Settings', 'TemplatePath', TemplatePath);
     myIni.WriteString('Settings', 'DocPath', NewDocStorage);
+    myIni.WriteInteger('Settings', 'StartLine', StartLine);
   finally
     myIni.Free;
   end;
@@ -62,6 +65,7 @@ begin
     dbPath := myIni.ReadString('Settings', 'DataBasePath', '');
     TemplatePath := myIni.ReadString('Settings', 'TemplatePath', '');
     NewDocStorage := myIni.ReadString('Settings', 'DocPath', '');
+    StartLine := myIni.ReadInteger('Settings', 'StartLine', 20);
   finally
     myIni.Free;
   end;
