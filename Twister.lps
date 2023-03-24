@@ -10,7 +10,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="60" Y="23"/>
-        <UsageCount Value="67"/>
+        <UsageCount Value="68"/>
       </Unit>
       <Unit>
         <Filename Value="frmmain.pas"/>
@@ -20,9 +20,9 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmMain"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="212"/>
-        <CursorPos X="43" Y="237"/>
-        <UsageCount Value="67"/>
+        <TopLine Value="248"/>
+        <CursorPos X="16" Y="277"/>
+        <UsageCount Value="68"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,16 +32,16 @@
         <UnitName Value="CustomComboItem"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="36" Y="15"/>
-        <UsageCount Value="66"/>
+        <UsageCount Value="67"/>
       </Unit>
       <Unit>
         <Filename Value="DataClasses\mailmerge.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="MailMerge"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="45" Y="52"/>
-        <UsageCount Value="64"/>
+        <TopLine Value="42"/>
+        <CursorPos X="59" Y="80"/>
+        <UsageCount Value="65"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -52,7 +52,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="3"/>
         <CursorPos X="31" Y="15"/>
-        <UsageCount Value="55"/>
+        <UsageCount Value="56"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -63,7 +63,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="14"/>
         <CursorPos X="66" Y="25"/>
-        <UsageCount Value="26"/>
+        <UsageCount Value="27"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -91,7 +91,7 @@
         <UsageCount Value="11"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="24">
+    <JumpHistory HistoryIndex="29">
       <Position>
         <Filename Value="frmmain.pas"/>
         <Caret Line="174" Column="26" TopLine="143"/>
@@ -192,6 +192,26 @@
         <Filename Value="frmmain.pas"/>
         <Caret Line="60" Column="5" TopLine="35"/>
       </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="243" Column="35" TopLine="212"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="129" Column="3" TopLine="129"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="360" Column="3" TopLine="326"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="321" Column="16" TopLine="304"/>
+      </Position>
+      <Position>
+        <Filename Value="frmmain.pas"/>
+        <Caret Line="239" Column="45" TopLine="221"/>
+      </Position>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>
@@ -206,6 +226,13 @@
         <WatchKind Value="wpkWrite"/>
         <Source Value="settings.pas"/>
         <Line Value="8"/>
+      </Item>
+      <Item>
+        <Kind Value="bpkSource"/>
+        <WatchScope Value="wpsLocal"/>
+        <WatchKind Value="wpkWrite"/>
+        <Source Value="frmmain.pas"/>
+        <Line Value="323"/>
       </Item>
     </BreakPoints>
     <Watches>

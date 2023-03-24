@@ -53,6 +53,8 @@ type
     procedure cmbSendersSelect(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure groupSalutationClick(Sender: TObject);
+    procedure groupSignatureClick(Sender: TObject);
   private
     FDbPath: string;
     FTemplate: string;
@@ -183,9 +185,10 @@ begin
   if groupSignature.ItemIndex <> -1 then
     Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
 
+
   //  templateFileName := 'file:///C:/temp/template.odt';
   templateFileName := 'file:///' + Template;
-  newFileName := 'file:///' + NewPath + '/' + edtDocName.text + '.odt';
+  newFileName := 'file:///' + NewPath + '/' + edtDocName.Text + '.odt';
 
   // Create instance of LibreOffice
   LoadParams := VarArrayCreate([0, -1], varVariant);
@@ -231,6 +234,19 @@ begin
   Text_.setReplaceString(Reporter.Subject);
   TextBody.ReplaceAll(Text_);
 
+  // Replace the {GREETING} tag
+  Text_ := TextBody.createReplaceDescriptor;
+  Text_.setSearchString('{GREETING}');
+  Text_.setReplaceString(Reporter.Salutation);
+  TextBody.ReplaceAll(Text_);
+
+  // Replace the {CLOSURE} tag
+  Text_ := TextBody.createReplaceDescriptor;
+  Text_.setSearchString('{CLOSURE}');
+  Text_.setReplaceString(Reporter.Signature);
+  TextBody.ReplaceAll(Text_);
+
+
   // Replace the {SIGNATURE} tag
   Text_ := TextBody.createReplaceDescriptor;
   Text_.setSearchString('{SIGNATURE}');
@@ -240,9 +256,7 @@ begin
   StatusBar.Panels[0].Text := 'Gegenereerd document opslaan...';
   Application.ProcessMessages;
 
-
-
-  // Save the new file
+  // ----- Save the new file ----
   TextBody.storeToURL(newFileName, VarArrayCreate([0, 0], varVariant));
   TextBody.Close(True);
 
@@ -260,7 +274,7 @@ begin
   oVC := TextBody.getCurrentController.getViewCursor;
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  oVC.goDown(8, False);
+  oVC.goDown(15, False);
 
 end;
 
@@ -340,6 +354,16 @@ end;
 procedure TmainForm.FormDestroy(Sender: TObject);
 begin
   Reporter.FreeInstance;
+end;
+
+procedure TmainForm.groupSalutationClick(Sender: TObject);
+begin
+
+end;
+
+procedure TmainForm.groupSignatureClick(Sender: TObject);
+begin
+
 end;
 
 

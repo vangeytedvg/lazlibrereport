@@ -115,6 +115,7 @@ object mainForm: TmainForm
       'Mevrouw,'
       'Mijnheer,'
     )
+    OnClick = groupSalutationClick
     ParentBackground = False
     ParentFont = False
     ParentColor = False
@@ -148,6 +149,7 @@ object mainForm: TmainForm
       'Met achting,'
       'Hoogachtend,'
     )
+    OnClick = groupSignatureClick
     ParentShowHint = False
     ShowHint = True
     TabOrder = 4

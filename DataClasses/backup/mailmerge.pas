@@ -62,9 +62,9 @@ begin
 end;
 
 { Class constructor }
-constructor TMailMerge.Create(const AName, AFirstName, AAddress,
-  ACity, AZipCode, APhone, AEmail, ASocialSecurity, ASubject,
-  ASalutation, ASignature: string);
+constructor TMailMerge.Create(
+  const AName, AFirstName, AAddress, ACity, AZipCode, APhone, AEmail,
+  ASocialSecurity, ASubject, ASalutation, ASignature: string);
 begin
   FName := AName;
   FFirstName := AFirstName;

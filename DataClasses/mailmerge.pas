@@ -27,6 +27,7 @@ type
     FSocialSecurity: string;
     FSubject: string;
     FSalutation: string;
+    FClosure: string;
     FSignature: string;
     FTo: string;
     function GetFullName: string;
@@ -44,6 +45,7 @@ type
     property Salutation: string read FSalutation write FSalutation;
     property Signature: string read FSignature write FSignature;
     property Destination: string read FTo write FTo;
+    property Closure: string read FClosure write FClosure;
     constructor Create(); overload;
     constructor Create(const AName, AFirstName, AAddress, ACity,
       AZipCode, APhone, AEmail, ASocialSecurity, ASubject, ASalutation,
