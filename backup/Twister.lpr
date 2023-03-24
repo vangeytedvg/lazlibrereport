@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, lazcontrols, frmMain, CustomComboItem, mailmerge, frmSettings
+  Forms, lazcontrols, frmMain, mailmerge, frmsettings, Settings
   { you can add units after this };
 
 {$R *.res}
@@ -20,6 +20,7 @@ begin
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TmainForm, mainForm);
+  Application.CreateForm(TFormSettings, FormSettings);
   Application.Run;
 end.
 

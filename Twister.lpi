@@ -14,7 +14,6 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
-    <LazDoc Paths="Help"/>
     <BuildModes>
       <Item Name="Default" Default="True"/>
     </BuildModes>
@@ -27,18 +26,21 @@
     </RunParams>
     <RequiredPackages>
       <Item>
-        <PackageName Value="LazControls"/>
-      </Item>
-      <Item>
-        <PackageName Value="FCL"/>
-      </Item>
-      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
     <Units>
       <Unit>
         <Filename Value="Twister.lpr"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="customcomboitem.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="CustomComboItem"/>
+      </Unit>
+      <Unit>
+        <Filename Value="frmmain.lfm"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
@@ -50,14 +52,8 @@
         <UnitName Value="frmMain"/>
       </Unit>
       <Unit>
-        <Filename Value="customcomboitem.pas"/>
+        <Filename Value="frmsettings.lfm"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="CustomComboItem"/>
-      </Unit>
-      <Unit>
-        <Filename Value="DataClasses\mailmerge.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="MailMerge"/>
       </Unit>
       <Unit>
         <Filename Value="frmsettings.pas"/>
@@ -67,9 +63,18 @@
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
+        <Filename Value="README.md"/>
+        <IsPartOfProject Value="True"/>
+      </Unit>
+      <Unit>
         <Filename Value="settings.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="Settings"/>
+      </Unit>
+      <Unit>
+        <Filename Value="DataClasses\mailmerge.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="MailMerge"/>
       </Unit>
     </Units>
   </ProjectOptions>
@@ -77,11 +82,11 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="Twister"/>
+      <Filename Value="TwisterLaz"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
-      <OtherUnitFiles Value="DataClasses;imgs"/>
+      <OtherUnitFiles Value="DataClasses"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Linking>

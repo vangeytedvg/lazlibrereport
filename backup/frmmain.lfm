@@ -1,7 +1,7 @@
 object mainForm: TmainForm
-  Left = 283
+  Left = 307
   Height = 681
-  Top = 126
+  Top = 137
   Width = 567
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'

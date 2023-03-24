@@ -12,7 +12,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
-  DBCtrls, ExtCtrls, ComCtrls, PopupNotifier, Buttons, CheckBoxThemed, ComObj,
+  DBCtrls, ExtCtrls, ComCtrls, PopupNotifier, Buttons,  ComObj,
   SQLite3Conn, SQLDB, DB, variants, mailmerge, IniFiles;
 
 type
@@ -118,14 +118,14 @@ begin
 end;
 
 procedure TmainForm.GetIniSettings;
-var
-  ini: TIniFile;
 begin
 
 end;
 
 procedure TmainForm.btnGenerateDocumentClick(Sender: TObject);
 { Check if there is a name for the document }
+var
+  myFile: string;
 begin
   // Check if a document name was entered
   if edtDocName.Text = '' then
@@ -133,6 +133,17 @@ begin
     ShowMessage('Geef een naam voor deze brief aub!');
     edtDocName.SetFocus;
     exit;
+  end
+  else
+  begin
+    // Check if the file already exists!
+    myFile := IniSettings.NewDocStorage + '\' + edtDocName.Text + '.odt';
+    if FileExists(myFile) then
+    begin
+      if MessageDlg('Waarschuwing', 'Het bestand ' + edtDocName.Text + ' bestaat reeds. \nWilt U het overschrijven?',
+           mtConfirmation, [mbYes, mbNo], 0) = mrNo then
+           exit;
+    end;
   end;
   if MEMOTo.Lines.Count = 0 then
   begin
@@ -276,7 +287,7 @@ begin
   oVC := TextBody.getCurrentController.getViewCursor;
   Cursor_ := Text_.createTextCursorByRange(oVC);
   oVC.JumpToStartOfPage;
-  oVC.goDown(25, False);
+  oVC.goDown(27, False);
 
 end;
 
