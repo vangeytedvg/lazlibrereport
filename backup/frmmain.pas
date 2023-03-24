@@ -45,7 +45,7 @@ type
     SQLTransaction: TSQLTransaction;
     StatusBar: TStatusBar;
     procedure btnGenerateDocumentClick(Sender: TObject);
-    procedure GenerateDocumentClick(fileName: string);
+    procedure GenerateDocument;
     procedure btnSettingsClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure cbSocialSecurityIncludeChange(Sender: TObject);
@@ -54,8 +54,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
   private
+    FDbPath: string;
+    FTemplate: string;
+    FNewPath: string;
     Reporter: TMailMerge;
     procedure GetIniSettings;
+    property DbPath: string read FDbPath write FDbPath;
+    property Template: string read FTemplate write FTemplate;
+    property NewPath: string read FNewPath write FNewPath;
   public
 
   end;
@@ -68,15 +74,25 @@ implementation
 uses
   CustomComboItem, frmSettings, Settings;
 
+var
+  IniSettings: TAppSettings;
+
 {$R *.lfm}
 
 { TmainForm }
 procedure TmainForm.FormCreate(Sender: TObject);
 { Initial settings }
-var
-  dbPath: string;
+
 begin
-  dbPath := 'C:\Development\Lazarus\LetterWizard\Twister.db';
+  // Get the settings from the Ini file
+  IniSettings := TAppSettings.Create('Twister.ini');
+  IniSettings.ReadSettings;
+
+  // Set the path for the sqlite database
+  dbPath := IniSettings.dbPath;
+  Template := IniSettings.TemplatePath.Replace('\', '/');
+  NewPath := IniSettings.NewDocStorage.Replace('\', '/');
+
   StatusBar.Panels[0].Text := 'Opening database';
   SQLConnection.DatabaseName := dbPath;
   SQLConnection.Connected := True;
@@ -100,21 +116,38 @@ begin
 end;
 
 procedure TmainForm.GetIniSettings;
+var
+  ini: TIniFile;
 begin
 
 end;
 
 procedure TmainForm.btnGenerateDocumentClick(Sender: TObject);
+{ Check if there is a name for the document }
 begin
+  // Check if a document name was entered
   if edtDocName.Text = '' then
   begin
-     ShowMessage('Geef een naam voor deze brief aub!');
-     edtDocName.SetFocus;
-     exit;
+    ShowMessage('Geef een naam voor deze brief aub!');
+    edtDocName.SetFocus;
+    exit;
   end;
+  // Check if a sender was selected
+  if cmbSenders.ItemIndex <> -1 then
+  begin
+    // Do something with the selected item
+    GenerateDocument;
+  end
+  else
+  begin
+    // No item is selected
+    ShowMessage('U moet een afzender kiezen!.');
+    cmbSenders.SetFocus;
+  end;
+
 end;
 
-procedure TmainForm.GenerateDocumentClick(fileName: string);
+procedure TmainForm.GenerateDocument;
 {
  Load a template document and generate a new document based on that
  template.
@@ -138,8 +171,9 @@ begin
   if groupSignature.ItemIndex <> -1 then
     Reporter.Signature := groupSignature.Items[groupSignature.ItemIndex];
 
-  templateFileName := 'file:///C:/temp/template.odt';
-  newFileName := 'file:///C:/temp/Brief.odt';
+  //  templateFileName := 'file:///C:/temp/template.odt';
+  templateFileName := 'file:///' + Template;
+  newFileName := 'file:///' + NewPath + '/' + edtDocName.text + '.odt';
 
   // Create instance of LibreOffice
   LoadParams := VarArrayCreate([0, -1], varVariant);
@@ -205,6 +239,13 @@ var
 begin
   FSetting := TFormSettings.Create(self);
   FSetting.ShowModal;
+  // Adapt the settings
+  IniSettings.ReadSettings;
+  // Set the path for the sqlite database
+  dbPath := IniSettings.dbPath;
+  Template := IniSettings.TemplatePath.Replace('\', '/');
+  NewPath := IniSettings.NewDocStorage.Replace('\', '/');
+
 end;
 
 procedure TmainForm.Button1Click(Sender: TObject);

@@ -14,31 +14,57 @@ uses
 
 type
   TAppSettings = class
+  private
     FDbPath: string;
     FTemplatePath: string;
     FNewDocStorage: string;
+    FIniFile: string;
   public
     property dbPath: string read FDbPath write FDbPath;
     property TemplatePath: string read FTemplatePath write FTemplatePath;
     property NewDocStorage: string read FNewDocStorage write FNewDocStorage;
-    procedure ReadSettings;
+    property IniFile: string read FIniFile write FIniFile;
+    constructor Create(AIniFile: string); overload;
     procedure WriteSettings;
+    procedure ReadSettings;
   end;
 
 
 implementation
 
-procedure TAppSettings.ReadSettings;
-var
-  ini: TIniFile;
+constructor TAppSettings.Create(AIniFile: string);
 begin
-  a := 0;
+  IniFile := AIniFile;
 end;
 
 procedure TAppSettings.WriteSettings;
+{ Write settins }
 var
-  ini: TIniFile;
+  myIni: TIniFile;
 begin
+  myIni := TIniFile.Create('Twister.ini');
+  try
+    myIni.WriteString('Settings', 'DataBasePath', dbPath);
+    myIni.WriteString('Settings', 'TemplatePath', TemplatePath);
+    myIni.WriteString('Settings', 'DocPath', NewDocStorage);
+  finally
+    myIni.Free;
+  end;
+end;
+
+procedure TAppSettings.ReadSettings;
+{ Read settings }
+var
+  myIni: TIniFile;
+begin
+  myIni := TIniFile.Create(IniFile);
+  try
+    dbPath := myIni.ReadString('Settings', 'DataBasePath', '');
+    TemplatePath := myIni.ReadString('Settings', 'TemplatePath', '');
+    NewDocStorage := myIni.ReadString('Settings', 'DocPath', '');
+  finally
+    myIni.Free;
+  end;
 end;
 
 end.

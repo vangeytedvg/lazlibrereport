@@ -1,7 +1,7 @@
 object mainForm: TmainForm
-  Left = 870
+  Left = 1003
   Height = 681
-  Top = 164
+  Top = 158
   Width = 567
   BorderStyle = bsDialog
   Caption = 'Letter Wizard by DenkaTech'
@@ -14,7 +14,6 @@ object mainForm: TmainForm
   Font.Name = 'Segoe UI'
   Font.Pitch = fpVariable
   Font.Quality = fqDraft
-  FormStyle = fsSystemStayOnTop
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   Position = poDesktopCenter
