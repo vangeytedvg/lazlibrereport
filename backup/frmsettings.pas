@@ -13,7 +13,7 @@ type
   { TFormSettings }
 
   TFormSettings = class(TForm)
-    btnClose: TButton;
+    btnCLoseM: TButton;
     btnOutputPath: TSpeedButton;
     btnSave: TButton;
     btnTemplate: TSpeedButton;
@@ -25,6 +25,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
+    procedure btnCLoseMClick(Sender: TObject);
   private
 
   public
@@ -37,6 +38,13 @@ var
 implementation
 
 {$R *.lfm}
+
+{ TFormSettings }
+
+procedure TFormSettings.btnCLoseMClick(Sender: TObject);
+begin
+  Close;
+end;
 
 end.
 

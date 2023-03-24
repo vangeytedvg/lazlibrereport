@@ -20,20 +20,20 @@ object mainForm: TmainForm
   Position = poDesktopCenter
   LCLVersion = '2.2.6.0'
   object btnGenerateDocument: TButton
-    Left = 332
+    Left = 336
     Height = 25
-    Top = 618
+    Top = 624
     Width = 144
     Caption = 'Brief Aanmaken'
     OnClick = btnGenerateDocumentClick
     TabOrder = 0
   end
   object cmbSenders: TComboBox
-    Left = 185
+    Left = 184
     Height = 25
     Hint = 'Selecteer de naam van de afzender'
-    Top = 73
-    Width = 368
+    Top = 112
+    Width = 365
     ItemHeight = 17
     OnChange = cmbSendersChange
     OnSelect = cmbSendersSelect
@@ -43,9 +43,9 @@ object mainForm: TmainForm
     TabOrder = 1
   end
   object MEMOFrom: TMemo
-    Left = 185
-    Height = 116
-    Top = 124
+    Left = 184
+    Height = 108
+    Top = 152
     Width = 368
     BorderSpacing.Bottom = 10
     BorderSpacing.Around = 10
@@ -69,9 +69,9 @@ object mainForm: TmainForm
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 186
+    Left = 184
     Height = 17
-    Top = 55
+    Top = 96
     Width = 126
     Caption = 'Afzender van de brief'
     ParentColor = False
@@ -79,16 +79,16 @@ object mainForm: TmainForm
   object Label3: TLabel
     Left = 186
     Height = 17
-    Top = 108
+    Top = 136
     Width = 116
     Caption = 'Afzender voorbeeld'
     ParentColor = False
   end
   object groupSalutation: TRadioGroup
-    Left = 188
+    Left = 187
     Height = 58
     Hint = 'Selecteer de aanhef voor de brief'
-    Top = 430
+    Top = 440
     Width = 369
     AutoFill = True
     Caption = 'Aanspreking'
@@ -127,7 +127,7 @@ object mainForm: TmainForm
     Left = 186
     Height = 80
     Hint = 'Selecteer waarmee de brief wordt ondertekend'
-    Top = 496
+    Top = 504
     Width = 369
     AutoFill = True
     Caption = 'Ondertekening'
@@ -156,7 +156,7 @@ object mainForm: TmainForm
   object Button1: TButton
     Left = 480
     Height = 25
-    Top = 618
+    Top = 624
     Width = 75
     Cancel = True
     Caption = 'Sluit'
@@ -166,16 +166,16 @@ object mainForm: TmainForm
   object Label4: TLabel
     Left = 186
     Height = 17
-    Top = 384
+    Top = 392
     Width = 38
     Caption = 'Betreft'
     ParentColor = False
   end
   object editSubject: TEdit
-    Left = 188
+    Left = 186
     Height = 25
     Hint = 'Voor hier het onderwerp van de brief in.'
-    Top = 403
+    Top = 408
     Width = 367
     ParentShowHint = False
     ShowHint = True
@@ -45136,17 +45136,17 @@ object mainForm: TmainForm
     SimplePanel = False
   end
   object Label5: TLabel
-    Left = 184
+    Left = 186
     Height = 17
-    Top = 248
+    Top = 264
     Width = 22
     Caption = 'Aan'
     ParentColor = False
   end
   object MEMOTo: TMemo
-    Left = 184
-    Height = 116
-    Top = 264
+    Left = 185
+    Height = 112
+    Top = 280
     Width = 368
     BorderSpacing.Bottom = 10
     BorderSpacing.Around = 10
@@ -45154,10 +45154,10 @@ object mainForm: TmainForm
     TabOrder = 8
   end
   object cbSocialSecurityInclude: TCheckBox
-    Left = 192
+    Left = 193
     Height = 21
     Hint = 'Aanvinken om rijksregisternummer in het document weer te geven'
-    Top = 585
+    Top = 592
     Width = 286
     Caption = 'Rijksregisternummer toevoegen aan Afzender'
     OnChange = cbSocialSecurityIncludeChange
@@ -45303,7 +45303,24 @@ object mainForm: TmainForm
       0000000000000000000000000000000000000000000000000000BCBAB943B4B3
       B20900000000A4A1A0C08F8D8C74000000000000000000000000
     }
+    OnClick = btnSettingsClick
     TabOrder = 10
+  end
+  object Label6: TLabel
+    Left = 184
+    Height = 17
+    Top = 47
+    Width = 97
+    Caption = 'Naam document'
+    ParentColor = False
+  end
+  object edtDocName: TEdit
+    Left = 184
+    Height = 25
+    Top = 67
+    Width = 365
+    TabOrder = 11
+    TextHint = 'Geef een betekenisvolle naam voor de brief'
   end
   object SQLConnection: TSQLite3Connection
     Connected = False

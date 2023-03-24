@@ -13,7 +13,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, DBGrids,
   DBCtrls, ExtCtrls, ComCtrls, PopupNotifier, Buttons, CheckBoxThemed, ComObj,
-  SQLite3Conn, SQLDB, DB, variants, mailmerge;
+  SQLite3Conn, SQLDB, DB, variants, mailmerge, IniFiles;
 
 type
 
@@ -26,6 +26,7 @@ type
     cbSocialSecurityInclude: TCheckBox;
     cmbSenders: TComboBox;
     DS_Senders: TDataSource;
+    edtDocName: TEdit;
     editSubject: TEdit;
     groupSignature: TRadioGroup;
     Image1: TImage;
@@ -34,6 +35,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     MEMOFrom: TMemo;
     groupSalutation: TRadioGroup;
     MEMOTo: TMemo;
@@ -43,6 +45,7 @@ type
     SQLTransaction: TSQLTransaction;
     StatusBar: TStatusBar;
     procedure btnGenerateDocumentClick(Sender: TObject);
+    procedure GenerateDocumentClick(fileName: string);
     procedure btnSettingsClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure cbSocialSecurityIncludeChange(Sender: TObject);
@@ -52,6 +55,7 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     Reporter: TMailMerge;
+    procedure GetIniSettings;
   public
 
   end;
@@ -62,7 +66,7 @@ var
 implementation
 
 uses
-  CustomComboItem, frmSettings;
+  CustomComboItem, frmSettings, Settings;
 
 {$R *.lfm}
 
@@ -95,7 +99,22 @@ begin
   StatusBar.Panels[0].Text := 'Ready...';
 end;
 
+procedure TmainForm.GetIniSettings;
+begin
+
+end;
+
 procedure TmainForm.btnGenerateDocumentClick(Sender: TObject);
+begin
+  if edtDocName.Text = '' then
+  begin
+     ShowMessage('Geef een naam voor deze brief aub!');
+     edtDocName.SetFocus;
+     exit;
+  end;
+end;
+
+procedure TmainForm.GenerateDocumentClick(fileName: string);
 {
  Load a template document and generate a new document based on that
  template.
@@ -103,6 +122,8 @@ procedure TmainForm.btnGenerateDocumentClick(Sender: TObject);
 var
   LOInstance, LOComponent, Text_, Cursor_, LoadParams, TextBody, ovc: variant;
   newFileName, templateFileName: string;
+  DocDate: TDateTime;
+  FormattedDateCity: string;
 begin
 
   // First Fill the remaining data of the Reporter object
@@ -125,30 +146,50 @@ begin
   LOInstance := CreateOleObject('com.sun.star.ServiceManager');
   LOComponent := LOInstance.createInstance('com.sun.star.frame.Desktop');
 
+  StatusBar.Panels[0].Text := 'Template laden...';
+  Application.ProcessMessages;
+
   // Load the template document
   TextBody := LOComponent.loadComponentFromURL(templateFileName,
     '_blank', 0, LoadParams);
+
+  StatusBar.Panels[0].Text := 'Afzender invoegen...';
+  Application.ProcessMessages;
 
   // Replace the {SENDER} tag
   Text_ := TextBody.createReplaceDescriptor;
   Text_.setSearchString('{SENDER}');
   Text_.setReplaceString(MEMOFrom.Text);
   TextBody.ReplaceAll(Text_);
-  Text_ := nil;
 
-  // Replace the {SENDDATE} tag
+  StatusBar.Panels[0].Text := 'Datum invoegen...';
+  Application.ProcessMessages;
+
+
+  // Replace the {SENDDATECITY} tag
+  DocDate := Now;
+  FormattedDateCity := Reporter.City + ', ' + FormatDateTime('dd mmmm yyyy', DocDate);
   Text_ := TextBody.createReplaceDescriptor;
-  Text_.setSearchString('{SENDDATE}');
-  Text_.setReplaceString('DAADa');
+  Text_.setSearchString('{SENDDATECITY}');
+  Text_.setReplaceString(FormattedDateCity);
   TextBody.ReplaceAll(Text_);
 
+  StatusBar.Panels[0].Text := 'Gegenereerd document opslaan...';
+  Application.ProcessMessages;
 
   // Save the new file
   TextBody.storeToURL(newFileName, VarArrayCreate([0, 0], varVariant));
   TextBody.Close(True);
+
+  StatusBar.Panels[0].Text := 'Laden gegenereerd document...';
+  Application.ProcessMessages;
+
   // Now load the newly created document
   TextBody := LOComponent.loadComponentFromURL(newFileName, '_blank', 0, LoadParams);
   Text_ := TextBody.getText();
+
+  StatusBar.Panels[0].Text := 'Klaar...';
+  Application.ProcessMessages;
 
   // Move the cursor to a new location
   oVC := TextBody.getCurrentController.getViewCursor;
@@ -160,7 +201,7 @@ end;
 
 procedure TmainForm.btnSettingsClick(Sender: TObject);
 var
-  FSetting : TFormSettings;
+  FSetting: TFormSettings;
 begin
   FSetting := TFormSettings.Create(self);
   FSetting.ShowModal;

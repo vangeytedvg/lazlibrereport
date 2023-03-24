@@ -43,7 +43,7 @@ implementation
 
 procedure TFormSettings.btnCLoseMClick(Sender: TObject);
 begin
-
+  Close;
 end;
 
 end.
